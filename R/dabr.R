@@ -1,14 +1,14 @@
 #' Connect to database
 #'
-#' Uses \code{RMariaDB} to open a connection to a MySQL database
+#' Uses \code{RMariaDB} to open a connection to a MySQL database.
 #'
-#' @param dbname database name
-#' @param user username of database owner
-#' @param password password (default: \code{NULL})
-#' @param host database host, it can be local (default) or remote
-#' @param port database port
+#' @param dbname Database/Schema name.
+#' @param user Username of database owner.
+#' @param password Password (default: \code{NULL}).
+#' @param host Database host, it can be local (default) or remote.
+#' @param port Database port.
 #'
-#' @return \code{MariaDBConnection} connection object
+#' @return \code{MariaDBConnection} connection object.
 #' @export
 #'
 #' @examples
@@ -33,8 +33,8 @@ open_conn_mysql <- function(dbname,
 
 #' Close connection to database
 #'
-#' @param conn connection object
-#' @param ... other arguments
+#' @param conn Connection object.
+#' @param ... Optional parameters.
 #'
 #' @rdname close_conn
 #' @export
@@ -115,12 +115,14 @@ select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
   return(records)
 }
 
-#' Select all the records inside a particular table
+#' Select all the records
+#' Select all the records inside a particular table, use the \code{table}
+#' parameter.
 #'
-#' @param conn \code{MariaDBConnection} connection object
-#' @param ... other arguments
+#' @param conn \code{MariaDBConnection} connection object.
+#' @param ... Optional parameters.
 #'
-#' @return data frame with records
+#' @return Data frame with records.
 #' @rdname select_all
 #' @export
 #'
@@ -129,8 +131,8 @@ select_all <- function(conn, ...) {
   UseMethod("select_all", conn)
 }
 
-#' @param table name of the table
-#' @param quiet boolean flag to hide status messages
+#' @param table Name of the table.
+#' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname select_all
 #' @export
@@ -146,12 +148,14 @@ select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   return(dabr::select(conn, query, quiet))
 }
 
-#' Check if \code{conn} is an object with class \code{MariaDBConnection}
+#' Check connection object
 #'
-#' @param conn \code{MariaDBConnection} connection object
+#' Check if \code{conn} is an object with class \code{MariaDBConnection}.
+#'
+#' @param conn \code{MariaDBConnection} connection object.
 #'
 #' @return \code{TRUE} if \code{conn} a \code{MariaDBConnection} connection
-#'     object, \code{FALSE} otherwise
+#'     object, \code{FALSE} otherwise.
 #'
 #' @family DB functions
 #' @noRd
