@@ -165,7 +165,7 @@ is.MariaDBConnection <- function(conn) {
 #' @param conn \code{MariaDBConnection} connection object.
 #' @param ... Optional parameters.
 #'
-#' @rdname select
+#' @rdname update
 #' @export
 #'
 #' @family DB functions
@@ -182,7 +182,7 @@ update <- function(conn, ...) {
 #' @examples
 #' \dontrun{
 #' conn <- open_conn_mysql("sys", "root")
-#' out <- update(conn, "UPDATE variable, value FROM sys_config")
+#' out <- update(conn, "UPDATE sys_config SET value = 1")
 #' close_conn(conn)
 #' }
 update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
@@ -203,6 +203,65 @@ update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
                 ifelse(res > 1, "s were ", " was "),
                 "updated.")
       }
+  },
+  error = function(e){
+    stop(conditionMessage(e))
+  })
+}
+
+#' Execute \code{INSERT} query
+#'
+#' @param conn \code{MariaDBConnection} connection object.
+#' @param ... Optional parameters.
+#'
+#' @rdname insert
+#' @export
+#'
+#' @family DB functions
+insert <- function(conn, ...) {
+  UseMethod("insert", conn)
+}
+
+#' @param query \code{INSERT} query.
+#' @param quiet Boolean flag to hide status messages.
+#'
+#' @rdname insert
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' conn <- open_conn_mysql("sys", "root")
+#' query <- paste0(
+#'   "INSERT INTO sys_config (variable, value, set_time, set_by) VALUES ",
+#'   "('test_var', 999, '", Sys.time(), "', NULL)"
+#' )
+#' out <- insert(conn, query)
+#' close_conn(conn)
+#' }
+insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+  # Verify that the query has a INSERT token
+  if (!("INSERT" %in% unlist(strsplit(toupper(query), " "))))
+    stop("Your query does not look like a valid INSERT query!")
+  # Show query
+  if (!quiet)
+    message(paste0("Executing: \n", query))
+
+  tryCatch({
+    # Send query
+    rs <- RMariaDB::dbSendQuery(conn, query)
+    rows <- RMariaDB::dbGetRowsAffected(rs)
+    # Show query results
+    if (!quiet)
+      if (rows == 0) {
+        message("\nResults: No records were inserted.")
+      } else {
+        message("\nResults: ", rows, " record",
+                ifelse(rows, "s were ", " was "),
+                "inserted.")
+      }
+
+    # Clear the result
+    RMariaDB::dbClearResult(rs)
   },
   error = function(e){
     stop(conditionMessage(e))
