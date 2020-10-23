@@ -1,15 +1,25 @@
 Package: dabr
 Title: Database Management with R
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R: c(
     person(given = "Roberto",
            family = "Villegas-Diaz",
            role = c("aut", "cre"),
            email = "r.villegas-diaz@reading.ac.uk",
-           comment = c(ORCID = "0000-0001-5036-8661"))
-Description: What the package does (one paragraph).
+           comment = c(ORCID = "0000-0001-5036-8661")),
+    person("SPECIAL Research Group @ University of Reading", role = c("cph")))
+Description: Provides functions to manage databases: select, update, insert,
+    and delete records, list tables, backup tables as CSV files, and import
+    CSV files as tables.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Imports: 
+    RMariaDB,
+    dplyr
+Suggests:
+    badger,
+    hexSticker,
+    knitr
