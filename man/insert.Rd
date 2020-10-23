@@ -10,7 +10,7 @@ insert(conn, ...)
 \method{insert}{MariaDBConnection}(conn, query, quiet = FALSE, ...)
 }
 \arguments{
-\item{conn}{\code{MariaDBConnection} connection object.}
+\item{conn}{DB connection object.}
 
 \item{...}{Optional parameters.}
 
@@ -35,6 +35,7 @@ close_conn(conn)
 \seealso{
 Other DB functions: 
 \code{\link{close_conn}()},
+\code{\link{list_tables}()},
 \code{\link{open_conn_mysql}()},
 \code{\link{select_all}()},
 \code{\link{select}()},

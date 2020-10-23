@@ -39,6 +39,7 @@ conn <- open_conn_mysql("sys")
 Other DB functions: 
 \code{\link{close_conn}()},
 \code{\link{insert}()},
+\code{\link{list_tables}()},
 \code{\link{select_all}()},
 \code{\link{select}()},
 \code{\link{update}()}
