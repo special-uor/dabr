@@ -3,26 +3,30 @@
 \name{select_all}
 \alias{select_all}
 \alias{select_all.MariaDBConnection}
-\title{Select all the records inside a particular table}
+\title{Select all the records
+Select all the records inside a particular table, use the \code{table}
+parameter.}
 \usage{
 select_all(conn, ...)
 
 \method{select_all}{MariaDBConnection}(conn, table, quiet = FALSE, ...)
 }
 \arguments{
-\item{conn}{\code{MariaDBConnection} connection object}
+\item{conn}{\code{MariaDBConnection} connection object.}
 
-\item{...}{other arguments}
+\item{...}{Optional parameters.}
 
-\item{table}{name of the table}
+\item{table}{Name of the table.}
 
-\item{quiet}{boolean flag to hide status messages}
+\item{quiet}{Boolean flag to hide status messages.}
 }
 \value{
-data frame with records
+Data frame with records.
 }
 \description{
-Select all the records inside a particular table
+Select all the records
+Select all the records inside a particular table, use the \code{table}
+parameter.
 }
 \examples{
 \dontrun{

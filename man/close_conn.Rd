@@ -13,9 +13,9 @@ close_conn(conn, ...)
 \method{close_conn}{default}(conn, ...)
 }
 \arguments{
-\item{conn}{connection object}
+\item{conn}{Connection object.}
 
-\item{...}{other arguments}
+\item{...}{Optional parameters.}
 }
 \description{
 Close connection to database

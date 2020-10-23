@@ -4,28 +4,34 @@
 \alias{open_conn_mysql}
 \title{Connect to database}
 \usage{
-open_conn_mysql(dbname, user, password = NULL, host = "localhost", port = 3306)
+open_conn_mysql(
+  dbname,
+  user = "root",
+  password = NULL,
+  host = "localhost",
+  port = 3306
+)
 }
 \arguments{
-\item{dbname}{database name}
+\item{dbname}{Database/Schema name.}
 
-\item{user}{username of database owner}
+\item{user}{Username of database owner.}
 
-\item{password}{password (default: \code{NULL})}
+\item{password}{Password (default: \code{NULL}).}
 
-\item{host}{database host, it can be local (default) or remote}
+\item{host}{Database host, it can be local (default) or remote.}
 
-\item{port}{database port}
+\item{port}{Database port.}
 }
 \value{
-\code{MariaDBConnection} connection object
+\code{MariaDBConnection} connection object.
 }
 \description{
-Uses \code{RMariaDB} to open a connection to a MySQL database
+Uses \code{RMariaDB} to open a connection to a MySQL database.
 }
 \examples{
 \dontrun{
-conn <- open_conn_mysql("sys", "root")
+conn <- open_conn_mysql("sys")
 }
 
 }
