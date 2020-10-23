@@ -35,6 +35,6 @@ close_conn(conn)
 Other DB functions: 
 \code{\link{close_conn}()},
 \code{\link{open_conn_mysql}()},
-\code{\link{select_query_mysql}()}
+\code{\link{select}()}
 }
 \concept{DB functions}
