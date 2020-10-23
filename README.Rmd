@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# dabr: Database Management with R <img src="inst/images/logo.png" alt="logo" align="right" height=200px/>
+# dabr: Database Management with R <img src="https://raw.githubusercontent.com/special-uor/dabr/main/inst/images/logo.png" alt="logo" align="right" height=200px/>
 
 <!-- badges: start -->
 `r badger::badge_devel("special-uor/dabr", "yellow")`
@@ -40,3 +40,18 @@ And the development version from [GitHub](https://github.com/special-uor/dabr) w
 remotes::install_github("special-uor/dabr")
 ```
 ## Example
+
+Connecting to the Reading Palaeofire Database (RPD), locally installed under the name `RPD-latest`:
+```{r}
+conn <- dabr::open_conn_mysql("RPD-latest")
+```
+
+Explore the database structure by listing the tables and their attributes:
+```{r}
+dabr::list_tables(conn)
+```
+
+__ALWAYS!__ close your connection to the database (when you are done):
+```{r}
+dabr::close_conn(conn)
+```
