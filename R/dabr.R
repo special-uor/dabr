@@ -116,6 +116,7 @@ select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
 }
 
 #' Select all the records
+#'
 #' Select all the records inside a particular table, use the \code{table}
 #' parameter.
 #'
@@ -207,15 +208,14 @@ update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
                 ifelse(res > 1, "s were ", " was "),
                 "updated.")
       }
-  },
-  error = function(e){
+  }, error = function(e) {
     stop(conditionMessage(e))
   })
 }
 
 #' Execute \code{INSERT} query
 #'
-#' @param conn \code{MariaDBConnection} connection object.
+#' @param conn DB connection object.
 #' @param ... Optional parameters.
 #'
 #' @rdname insert
@@ -266,8 +266,39 @@ insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
 
     # Clear the result
     RMariaDB::dbClearResult(rs)
-  },
-  error = function(e){
+  }, error = function(e) {
+    stop(conditionMessage(e))
+  })
+}
+
+#' List tables
+#'
+#' @param conn DB connection object.
+#' @param ... Optional parameters.
+#'
+#' @rdname list_tables
+#' @export
+#'
+#' @family DB functions
+list_tables <- function(conn, ...) {
+  UseMethod("list_tables", conn)
+}
+
+#' @param quiet Boolean flag to hide status messages.
+#'
+#' @rdname list_tables
+#' @export
+list_tables.MariaDBConnection <- function(conn, quiet = FALSE, ...) {
+  tryCatch({
+    table_names <- RMariaDB::dbListTables(conn)
+    tables_info <- lapply(table_names, RMariaDB::dbListFields, conn = conn)
+    names(tables_info) <- table_names
+    for (i in seq_len(length(tables_info))) {
+      print(
+        knitr::kable(tables_info[[i]], col.names = table_names[i])
+      )
+    }
+  }, error = function(e) {
     stop(conditionMessage(e))
   })
 }
