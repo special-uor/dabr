@@ -3,11 +3,14 @@
 \name{select}
 \alias{select}
 \alias{select.MariaDBConnection}
+\alias{update}
 \title{Execute \code{SELECT} query}
 \usage{
 select(conn, ...)
 
 \method{select}{MariaDBConnection}(conn, query, quiet = FALSE, ...)
+
+update(conn, ...)
 }
 \arguments{
 \item{conn}{\code{MariaDBConnection} connection object.}
@@ -23,6 +26,8 @@ Data frame containing the selected records.
 }
 \description{
 Execute \code{SELECT} query
+
+Execute \code{UPDATE} query
 }
 \examples{
 \dontrun{
@@ -32,6 +37,11 @@ close_conn(conn)
 }
 }
 \seealso{
+Other DB functions: 
+\code{\link{close_conn}()},
+\code{\link{open_conn_mysql}()},
+\code{\link{select_all}()}
+
 Other DB functions: 
 \code{\link{close_conn}()},
 \code{\link{open_conn_mysql}()},
