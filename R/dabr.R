@@ -13,12 +13,12 @@
 #'
 #' @examples
 #' \dontrun{
-#' conn <- open_conn_mysql("sys", "root")
+#' conn <- open_conn_mysql("sys")
 #' }
 #'
 #' @family DB functions
 open_conn_mysql <- function(dbname,
-                            user,
+                            user = "root",
                             password = NULL,
                             host = "localhost",
                             port = 3306) {
