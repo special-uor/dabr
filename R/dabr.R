@@ -1,24 +1,24 @@
 #' Connect to database
 #'
-#' Uses \code{RMariaDB} to open a connection to a MySQL database
+#' Uses \code{RMariaDB} to open a connection to a MySQL database.
 #'
-#' @param dbname database name
-#' @param user username of database owner
-#' @param password password (default: \code{NULL})
-#' @param host database host, it can be local (default) or remote
-#' @param port database port
+#' @param dbname Database/Schema name.
+#' @param user Username of database owner.
+#' @param password Password (default: \code{NULL}).
+#' @param host Database host, it can be local (default) or remote.
+#' @param port Database port.
 #'
-#' @return \code{MariaDBConnection} connection object
+#' @return \code{MariaDBConnection} connection object.
 #' @export
 #'
 #' @examples
 #' \dontrun{
-#' conn <- open_conn_mysql("sys", "root")
+#' conn <- open_conn_mysql("sys")
 #' }
 #'
 #' @family DB functions
 open_conn_mysql <- function(dbname,
-                            user,
+                            user = "root",
                             password = NULL,
                             host = "localhost",
                             port = 3306) {
@@ -33,8 +33,8 @@ open_conn_mysql <- function(dbname,
 
 #' Close connection to database
 #'
-#' @param conn connection object
-#' @param ... other arguments
+#' @param conn Connection object.
+#' @param ... Optional parameters.
 #'
 #' @rdname close_conn
 #' @export
@@ -115,12 +115,14 @@ select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
   return(records)
 }
 
-#' Select all the records inside a particular table
+#' Select all the records
+#' Select all the records inside a particular table, use the \code{table}
+#' parameter.
 #'
-#' @param conn \code{MariaDBConnection} connection object
-#' @param ... other arguments
+#' @param conn \code{MariaDBConnection} connection object.
+#' @param ... Optional parameters.
 #'
-#' @return data frame with records
+#' @return Data frame with records.
 #' @rdname select_all
 #' @export
 #'
@@ -129,8 +131,8 @@ select_all <- function(conn, ...) {
   UseMethod("select_all", conn)
 }
 
-#' @param table name of the table
-#' @param quiet boolean flag to hide status messages
+#' @param table Name of the table.
+#' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname select_all
 #' @export
@@ -146,12 +148,14 @@ select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   return(dabr::select(conn, query, quiet))
 }
 
-#' Check if \code{conn} is an object with class \code{MariaDBConnection}
+#' Check connection object
 #'
-#' @param conn \code{MariaDBConnection} connection object
+#' Check if \code{conn} is an object with class \code{MariaDBConnection}.
+#'
+#' @param conn \code{MariaDBConnection} connection object.
 #'
 #' @return \code{TRUE} if \code{conn} a \code{MariaDBConnection} connection
-#'     object, \code{FALSE} otherwise
+#'     object, \code{FALSE} otherwise.
 #'
 #' @family DB functions
 #' @noRd
@@ -165,7 +169,7 @@ is.MariaDBConnection <- function(conn) {
 #' @param conn \code{MariaDBConnection} connection object.
 #' @param ... Optional parameters.
 #'
-#' @rdname select
+#' @rdname update
 #' @export
 #'
 #' @family DB functions
@@ -182,7 +186,7 @@ update <- function(conn, ...) {
 #' @examples
 #' \dontrun{
 #' conn <- open_conn_mysql("sys", "root")
-#' out <- update(conn, "UPDATE variable, value FROM sys_config")
+#' out <- update(conn, "UPDATE sys_config SET value = 1")
 #' close_conn(conn)
 #' }
 update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
@@ -203,6 +207,65 @@ update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
                 ifelse(res > 1, "s were ", " was "),
                 "updated.")
       }
+  },
+  error = function(e){
+    stop(conditionMessage(e))
+  })
+}
+
+#' Execute \code{INSERT} query
+#'
+#' @param conn \code{MariaDBConnection} connection object.
+#' @param ... Optional parameters.
+#'
+#' @rdname insert
+#' @export
+#'
+#' @family DB functions
+insert <- function(conn, ...) {
+  UseMethod("insert", conn)
+}
+
+#' @param query \code{INSERT} query.
+#' @param quiet Boolean flag to hide status messages.
+#'
+#' @rdname insert
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' conn <- open_conn_mysql("sys", "root")
+#' query <- paste0(
+#'   "INSERT INTO sys_config (variable, value, set_time, set_by) VALUES ",
+#'   "('test_var', 999, '", Sys.time(), "', NULL)"
+#' )
+#' out <- insert(conn, query)
+#' close_conn(conn)
+#' }
+insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+  # Verify that the query has a INSERT token
+  if (!("INSERT" %in% unlist(strsplit(toupper(query), " "))))
+    stop("Your query does not look like a valid INSERT query!")
+  # Show query
+  if (!quiet)
+    message(paste0("Executing: \n", query))
+
+  tryCatch({
+    # Send query
+    rs <- RMariaDB::dbSendQuery(conn, query)
+    rows <- RMariaDB::dbGetRowsAffected(rs)
+    # Show query results
+    if (!quiet)
+      if (rows == 0) {
+        message("\nResults: No records were inserted.")
+      } else {
+        message("\nResults: ", rows, " record",
+                ifelse(rows, "s were ", " was "),
+                "inserted.")
+      }
+
+    # Clear the result
+    RMariaDB::dbClearResult(rs)
   },
   error = function(e){
     stop(conditionMessage(e))

@@ -2,10 +2,12 @@
 
 S3method(close_conn,MariaDBConnection)
 S3method(close_conn,default)
+S3method(insert,MariaDBConnection)
 S3method(select,MariaDBConnection)
 S3method(select_all,MariaDBConnection)
 S3method(update,MariaDBConnection)
 export(close_conn)
+export(insert)
 export(open_conn_mysql)
 export(select)
 export(select_all)
