@@ -5,6 +5,10 @@
 
 <!-- badges: start -->
 
+[![](https://img.shields.io/badge/devel%20version-0.0.0.9000-yellow.svg)](https://github.com/special-uor/dabr)
+[![R build
+status](https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg)](https://github.com/special-uor/dabr/actions)
+[![](https://www.r-pkg.org/badges/version/dabr?color=black)](https://cran.r-project.org/package=dabr)
 <!-- badges: end -->
 
 The goal of dabr is to provide functions to manage databases: select,
