@@ -102,7 +102,14 @@ select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
   records <- RMariaDB::dbFetch(rs)
   # Show query results
   if (!quiet)
-    message(paste0("Results:\n", nrow(records), " records were found."))
+    if (nrow(records) == 0) {
+      message("\nResults: No records were found.")
+    } else {
+      message("\nResults: ", nrow(records), " record",
+              ifelse(nrow(records) > 1, "s were ", " was "),
+              "found.")
+    }
+
   # Clear the result
   RMariaDB::dbClearResult(rs)
   return(records)
@@ -151,4 +158,53 @@ select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
 #' @keywords internal
 is.MariaDBConnection <- function(conn) {
   inherits(conn, "MariaDBConnection")
+}
+
+#' Execute \code{UPDATE} query
+#'
+#' @param conn \code{MariaDBConnection} connection object.
+#' @param ... Optional parameters.
+#'
+#' @rdname select
+#' @export
+#'
+#' @family DB functions
+update <- function(conn, ...) {
+  UseMethod("update", conn)
+}
+
+#' @param query \code{UPDATE} query.
+#' @param quiet Boolean flag to hide status messages.
+#'
+#' @rdname update
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' conn <- open_conn_mysql("sys", "root")
+#' out <- update(conn, "UPDATE variable, value FROM sys_config")
+#' close_conn(conn)
+#' }
+update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+  # Verify that the query has a UPDATE token
+  if (!("UPDATE" %in% unlist(strsplit(toupper(query), " "))))
+    stop("Your query does not look like a valid UPDATE query!")
+  # Show query
+  if (!quiet)
+    message(paste0("Executing: \n", query))
+
+  tryCatch({
+    res <- RMariaDB::dbExecute(conn, query)
+    if (!quiet)
+      if (res == 0) {
+        message("\nResults: No records were updated.")
+      } else {
+        message("\nResults: ", res, " record",
+                ifelse(res > 1, "s were ", " was "),
+                "updated.")
+      }
+  },
+  error = function(e){
+    stop(conditionMessage(e))
+  })
 }
