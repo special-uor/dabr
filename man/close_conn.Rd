@@ -28,8 +28,10 @@ close_conn(conn)
 }
 \seealso{
 Other DB functions: 
+\code{\link{insert}()},
 \code{\link{open_conn_mysql}()},
 \code{\link{select_all}()},
-\code{\link{select}()}
+\code{\link{select}()},
+\code{\link{update}()}
 }
 \concept{DB functions}
