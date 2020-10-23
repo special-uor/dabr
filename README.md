@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# dabr: Database Management with R
+# dabr: Database Management with R <img src="inst/images/logo.png" alt="logo" align="right" height=200px/>
 
 <!-- badges: start -->
 
