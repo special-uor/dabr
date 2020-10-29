@@ -32,6 +32,7 @@ close_conn(conn)
 Other DB functions: 
 \code{\link{close_conn}()},
 \code{\link{insert}()},
+\code{\link{list_tables}()},
 \code{\link{open_conn_mysql}()},
 \code{\link{select_all}()},
 \code{\link{select}()}

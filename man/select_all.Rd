@@ -3,9 +3,7 @@
 \name{select_all}
 \alias{select_all}
 \alias{select_all.MariaDBConnection}
-\title{Select all the records
-Select all the records inside a particular table, use the \code{table}
-parameter.}
+\title{Select all the records}
 \usage{
 select_all(conn, ...)
 
@@ -24,7 +22,6 @@ select_all(conn, ...)
 Data frame with records.
 }
 \description{
-Select all the records
 Select all the records inside a particular table, use the \code{table}
 parameter.
 }
@@ -39,6 +36,7 @@ close_conn(conn)
 Other DB functions: 
 \code{\link{close_conn}()},
 \code{\link{insert}()},
+\code{\link{list_tables}()},
 \code{\link{open_conn_mysql}()},
 \code{\link{select}()},
 \code{\link{update}()}
