@@ -7,14 +7,12 @@
 \usage{
 insert(conn, ...)
 
-\method{insert}{MariaDBConnection}(conn, query, quiet = FALSE, ...)
+\method{insert}{MariaDBConnection}(conn, ..., quiet = FALSE)
 }
 \arguments{
 \item{conn}{DB connection object.}
 
-\item{...}{Optional parameters.}
-
-\item{query}{\code{INSERT} query.}
+\item{...}{\code{INSERT} query and optional parameters.}
 
 \item{quiet}{Boolean flag to hide status messages.}
 }
