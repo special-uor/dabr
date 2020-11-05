@@ -170,8 +170,8 @@ is.MariaDBConnection <- function(conn) {
 
 #' Execute \code{UPDATE} query
 #'
-#' @param conn \code{MariaDBConnection} connection object.
-#' @param ... Optional parameters.
+#' @param conn DB connection object.
+#' @param ... \code{UPDATE} query and optional parameters.
 #'
 #' @rdname update
 #' @export
@@ -181,7 +181,6 @@ update <- function(conn, ...) {
   UseMethod("update", conn)
 }
 
-#' @param query \code{UPDATE} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname update
@@ -193,7 +192,8 @@ update <- function(conn, ...) {
 #' out <- update(conn, "UPDATE sys_config SET value = 1")
 #' close_conn(conn)
 #' }
-update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+update.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a UPDATE token
   if (!("UPDATE" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid UPDATE query!")
@@ -219,7 +219,7 @@ update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
 #' Execute \code{INSERT} query
 #'
 #' @param conn DB connection object.
-#' @param ... Optional parameters.
+#' @param ... \code{INSERT} query and optional parameters.
 #'
 #' @rdname insert
 #' @export
@@ -229,7 +229,6 @@ insert <- function(conn, ...) {
   UseMethod("insert", conn)
 }
 
-#' @param query \code{INSERT} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname insert
@@ -245,7 +244,8 @@ insert <- function(conn, ...) {
 #' out <- insert(conn, query)
 #' close_conn(conn)
 #' }
-insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+insert.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a INSERT token
   if (!("INSERT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid INSERT query!")
