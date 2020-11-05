@@ -1,3 +1,6 @@
+#' @keywords internal
+"_PACKAGE"
+
 #' Connect to database
 #'
 #' Uses \code{RMariaDB} to open a connection to a MySQL database.
