@@ -285,13 +285,19 @@ list_tables <- function(conn, ...) {
 }
 
 #' @param quiet Boolean flag to hide status messages.
+#' @param attr Boolean flag to list the attributes of each table.
+#'
+#' @return If \code{quiet = TRUE} returns a list with the tables' names. If
+#'     \code{attr = TRUE} includes each attribute of the tables.
 #'
 #' @rdname list_tables
 #' @export
-list_tables.MariaDBConnection <- function(conn, quiet = FALSE, ...) {
+list_tables.MariaDBConnection <- function(conn, quiet = FALSE, attr = TRUE, ...) {
   tryCatch({
     table_names <- RMariaDB::dbListTables(conn)
-    tables_info <- lapply(table_names, RMariaDB::dbListFields, conn = conn)
+    if (!attr)
+      return(table_names)
+    tables_info <- lapply(table_names, get_attr, conn = conn)
     names(tables_info) <- table_names
     if (!quiet) {
       for (i in seq_along(tables_info))
