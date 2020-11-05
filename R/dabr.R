@@ -91,7 +91,7 @@ select <- function(conn, ...) {
 #' close_conn(conn)
 #' }
 select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
-  query <- paste(unlist(lapply(list(...), trimws)), collapse = " ")
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a SELECT token
   if (!("SELECT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid SELECT query!")
