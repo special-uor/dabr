@@ -10,7 +10,7 @@ select(conn, ...)
 \method{select}{MariaDBConnection}(conn, query, quiet = FALSE, ...)
 }
 \arguments{
-\item{conn}{\code{MariaDBConnection} connection object.}
+\item{conn}{DB connection object.}
 
 \item{...}{Optional parameters.}
 
