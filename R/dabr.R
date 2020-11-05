@@ -68,7 +68,7 @@ close_conn.default <- function(conn, ...) {
 #' Execute \code{SELECT} query
 #'
 #' @param conn DB connection object.
-#' @param ... Optional parameters.
+#' @param ... \code{SELECT} query and optional parameters.
 #'
 #' @return Data frame containing the selected records.
 #' @rdname select
@@ -79,7 +79,6 @@ select <- function(conn, ...) {
   UseMethod("select", conn)
 }
 
-#' @param query \code{SELECT} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname select
@@ -91,7 +90,8 @@ select <- function(conn, ...) {
 #' out <- select(conn, "SELECT variable, value FROM sys_config")
 #' close_conn(conn)
 #' }
-select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(list(...), trimws)), collapse = " ")
   # Verify that the query has a SELECT token
   if (!("SELECT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid SELECT query!")
