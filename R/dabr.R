@@ -33,7 +33,7 @@ open_conn_mysql <- function(dbname,
 
 #' Close connection to database
 #'
-#' @param conn Connection object.
+#' @param conn DB connection object.
 #' @param ... Optional parameters.
 #'
 #' @rdname close_conn
@@ -64,7 +64,7 @@ close_conn.default <- function(conn, ...) {
 
 #' Execute \code{SELECT} query
 #'
-#' @param conn \code{MariaDBConnection} connection object.
+#' @param conn DB connection object.
 #' @param ... Optional parameters.
 #'
 #' @return Data frame containing the selected records.
@@ -303,6 +303,31 @@ list_tables.MariaDBConnection <- function(conn, quiet = FALSE, ...) {
       names(out) <- table_names
       return(out)
     }
+  }, error = function(e) {
+    stop(conditionMessage(e))
+  })
+}
+
+#' Get attributes of a table
+#'
+#' @inheritParams close_conn
+#'
+#' @export
+#'
+#' @rdname get_attr
+get_attr <- function(conn, ...) {
+  UseMethod("get_attr", conn)
+}
+
+#' @param name Table name.
+#'
+#' @return List of attributes for table \code{name}.
+#' @export
+#'
+#' @rdname get_attr
+get_attr.MariaDBConnection <- function(conn, name, ...) {
+  tryCatch({
+    return(RMariaDB::dbListFields(conn = conn, name = name))
   }, error = function(e) {
     stop(conditionMessage(e))
   })
