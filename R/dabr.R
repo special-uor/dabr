@@ -293,10 +293,15 @@ list_tables.MariaDBConnection <- function(conn, quiet = FALSE, ...) {
     table_names <- RMariaDB::dbListTables(conn)
     tables_info <- lapply(table_names, RMariaDB::dbListFields, conn = conn)
     names(tables_info) <- table_names
-    for (i in seq_len(length(tables_info))) {
-      print(
-        knitr::kable(tables_info[[i]], col.names = table_names[i])
-      )
+    if (!quiet) {
+      for (i in seq_along(tables_info))
+        print(knitr::kable(tables_info[[i]], col.names = table_names[i]))
+    } else {
+      out <- vector("list", length(table_names))
+      for (i in seq_along(tables_info))
+        out[[i]] <- tables_info[[i]]
+      names(out) <- table_names
+      return(out)
     }
   }, error = function(e) {
     stop(conditionMessage(e))
