@@ -16,9 +16,9 @@ knitr::opts_chunk$set(
 # dabr: Database Management with R <img src="https://raw.githubusercontent.com/special-uor/dabr/main/inst/images/logo.png" alt="logo" align="right" height=200px/>
 
 <!-- badges: start -->
+`r badger::badge_cran_release("dabr", "black")`
 `r badger::badge_devel("special-uor/dabr", "yellow")`
 `r badger::badge_github_actions("special-uor/dabr")`
-`r badger::badge_cran_release("dabr", "black")`
 <!-- badges: end -->
 
 The goal of dabr is to provide functions to manage databases: select, update, insert,
@@ -37,7 +37,7 @@ And the development version from [GitHub](https://github.com/special-uor/dabr) w
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("special-uor/dabr")
+remotes::install_github("special-uor/dabr", "dev")
 ```
 ## Example
 
