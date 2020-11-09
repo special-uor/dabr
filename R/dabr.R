@@ -341,3 +341,25 @@ get_attr.MariaDBConnection <- function(conn, name, ...) {
     stop(conditionMessage(e))
   })
 }
+
+#' Verify connection
+#'
+#' Verify if connection object is still valid, is connected to the database
+#' server.
+#'
+#' @inheritParams close_conn
+#'
+#' @return Connection status.
+#' @export
+#'
+#' @rdname is.connected
+is.connected <- function(conn,  ...) {
+  UseMethod("is.connected", conn)
+}
+
+#' @export
+#'
+#' @rdname is.connected
+is.connected.MariaDBConnection <- function(conn, ...) {
+  RMariaDB::dbIsValid(conn)
+}
