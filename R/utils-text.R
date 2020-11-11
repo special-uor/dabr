@@ -9,8 +9,9 @@
 #'
 #' @examples
 #' dabr::quote("A")
+#' dabr::quote("l'A")
 quote <- function(str) {
-  return(paste0("'", str, "'"))
+  return(paste0("'", gsub("\\'", "\\\\'", str), "'"))
 }
 
 #' Combine attributes
