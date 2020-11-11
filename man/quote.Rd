@@ -17,4 +17,5 @@ Add single quotes to string.
 }
 \examples{
 dabr::quote("A")
+dabr::quote("l'A")
 }
