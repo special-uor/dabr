@@ -91,6 +91,7 @@ select <- function(conn, ...) {
 #' close_conn(conn)
 #' }
 select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  # rlang::dots_list()
   query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a SELECT token
   if (!("SELECT" %in% unlist(strsplit(toupper(query), " "))))
@@ -263,7 +264,7 @@ insert.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
         message("\nResults: No records were inserted.")
       } else {
         message("\nResults: ", rows, " record",
-                ifelse(rows, "s were ", " was "),
+                ifelse(rows > 1, "s were ", " was "),
                 "inserted.")
       }
 
