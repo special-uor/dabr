@@ -25,7 +25,7 @@ open_conn_mysql <- function(dbname,
                             password = NULL,
                             host = "127.0.0.1",
                             port = 3306) {
-  conn <- RMariaDB::dbConnect(dvr = RMariaDB::MariaDB(),
+  conn <- RMariaDB::dbConnect(drv = RMariaDB::MariaDB(),
                               user = user,
                               password = password,
                               dbname = dbname,
