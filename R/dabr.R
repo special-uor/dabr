@@ -96,6 +96,10 @@ select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
   # Verify that the query has a SELECT token
   if (!("SELECT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid SELECT query!")
+
+  # Change NAs to NULL
+  # query <- gsub("NA", "NULL", query)
+
   # Show query
   if (!quiet)
     message(paste0("Executing: \n", query))
@@ -144,13 +148,13 @@ select_all <- function(conn, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- open_conn_mysql("sys", "root")
-#' out <- select_all(conn, "sys_config")
-#' close_conn(conn)
+#' conn <- dabr::open_conn_mysql("sys", "root")
+#' out <- dabr::select_all(conn, "sys_config")
+#' dabr::close_conn(conn)
 #' }
 select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   query <- paste0("SELECT * FROM ", table)
-  return(dabr::select(conn, query, quiet))
+  return(dabr::select(conn, query, quiet = quiet))
 }
 
 #' Check connection object
