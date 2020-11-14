@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List tables — list_tables • dabr</title>
+<title>dabr: Database Management with R — dabr-package • dabr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="List tables — list_tables" />
-<meta property="og:description" content="List tables" />
+<meta property="og:title" content="dabr: Database Management with R — dabr-package" />
+<meta property="og:description" content="Provides functions to manage databases: select, update, insert,
+    and delete records, list tables, backup tables as CSV files, and import
+    CSV files as tables." />
 
 
 
@@ -111,54 +113,37 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List tables</h1>
+    <h1>dabr: Database Management with R</h1>
     <small class="dont-index">Source: <a href='https://github.com/special-uor/dabr/blob/master/R/dabr.R'><code>R/dabr.R</code></a></small>
-    <div class="hidden name"><code>list_tables.Rd</code></div>
+    <div class="hidden name"><code>dabr-package.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>List tables</p>
+    <p>Provides functions to manage databases: select, update, insert,
+    and delete records, list tables, backup tables as CSV files, and import
+    CSV files as tables.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_tables</span><span class='op'>(</span><span class='va'>conn</span>, <span class='va'>...</span><span class='op'>)</span>
 
-<span class='co'># S3 method for MariaDBConnection</span>
-<span class='fu'>list_tables</span><span class='op'>(</span><span class='va'>conn</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, attr <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>conn</th>
-      <td><p>DB connection object.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Optional parameters.</p></td>
-    </tr>
-    <tr>
-      <th>quiet</th>
-      <td><p>Boolean flag to hide status messages.</p></td>
-    </tr>
-    <tr>
-      <th>attr</th>
-      <td><p>Boolean flag to list the attributes of each table.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>If <code>quiet = TRUE</code> returns a list with the tables' names. If
-<code>attr = TRUE</code> includes each attribute of the tables.</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <div class='dont-index'><p>Other DB functions: 
-<code><a href='close_conn.html'>close_conn</a>()</code>,
-<code><a href='insert.html'>insert</a>()</code>,
-<code><a href='open_conn_mysql.html'>open_conn_mysql</a>()</code>,
-<code><a href='select_all.html'>select_all</a>()</code>,
-<code><a href='select.html'>select</a>()</code>,
-<code><a href='update.html'>update</a>()</code></p></div>
+    <div class='dont-index'><p>Useful links:</p><ul>
+<li><p><a href='https://github.com/special-uor/dabr'>https://github.com/special-uor/dabr</a></p></li>
+<li><p><a href='https://special-uor.github.io/dabr'>https://special-uor.github.io/dabr</a></p></li>
+<li><p><a href='https://research.reading.ac.uk/palaeoclimate'>https://research.reading.ac.uk/palaeoclimate</a></p></li>
+<li><p>Report bugs at <a href='https://github.com/special-uor/dabr/issues'>https://github.com/special-uor/dabr/issues</a></p></li>
+</ul>
+
+</div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p><strong>Maintainer</strong>: Roberto Villegas-Diaz <a href='mailto:r.villegas-diaz@reading.ac.uk'>r.villegas-diaz@reading.ac.uk</a> (<a href='https://orcid.org/0000-0001-5036-8661'>ORCID</a>)</p>
+<p>Other contributors:</p><ul>
+<li><p>SPECIAL Research Group @ University of Reading [copyright holder]</p></li>
+</ul>
+
+
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>List tables — list_tables • dabr</title>
+<title>Combine attributes — attributes • dabr</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="List tables — list_tables" />
-<meta property="og:description" content="List tables" />
+<meta property="og:title" content="Combine attributes — attributes" />
+<meta property="og:description" content="Combine attributes from a vector of strings." />
 
 
 
@@ -111,55 +111,35 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>List tables</h1>
-    <small class="dont-index">Source: <a href='https://github.com/special-uor/dabr/blob/master/R/dabr.R'><code>R/dabr.R</code></a></small>
-    <div class="hidden name"><code>list_tables.Rd</code></div>
+    <h1>Combine attributes</h1>
+    <small class="dont-index">Source: <a href='https://github.com/special-uor/dabr/blob/master/R/utils-text.R'><code>R/utils-text.R</code></a></small>
+    <div class="hidden name"><code>attributes.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>List tables</p>
+    <p>Combine attributes from a vector of strings.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>list_tables</span><span class='op'>(</span><span class='va'>conn</span>, <span class='va'>...</span><span class='op'>)</span>
-
-<span class='co'># S3 method for MariaDBConnection</span>
-<span class='fu'>list_tables</span><span class='op'>(</span><span class='va'>conn</span>, quiet <span class='op'>=</span> <span class='cn'>FALSE</span>, attr <span class='op'>=</span> <span class='cn'>TRUE</span>, <span class='va'>...</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>attributes</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>conn</th>
-      <td><p>DB connection object.</p></td>
-    </tr>
-    <tr>
       <th>...</th>
-      <td><p>Optional parameters.</p></td>
-    </tr>
-    <tr>
-      <th>quiet</th>
-      <td><p>Boolean flag to hide status messages.</p></td>
-    </tr>
-    <tr>
-      <th>attr</th>
-      <td><p>Boolean flag to list the attributes of each table.</p></td>
+      <td><p>Strings.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>If <code>quiet = TRUE</code> returns a list with the tables' names. If
-<code>attr = TRUE</code> includes each attribute of the tables.</p>
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <p>Combined string with all the attributes.</p>
 
-    <div class='dont-index'><p>Other DB functions: 
-<code><a href='close_conn.html'>close_conn</a>()</code>,
-<code><a href='insert.html'>insert</a>()</code>,
-<code><a href='open_conn_mysql.html'>open_conn_mysql</a>()</code>,
-<code><a href='select_all.html'>select_all</a>()</code>,
-<code><a href='select.html'>select</a>()</code>,
-<code><a href='update.html'>update</a>()</code></p></div>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'>attributes</span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "A, B, C"</div><div class='input'><span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'>attributes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span><span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "A, B, C"</div><div class='input'><span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'>attributes</span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"A"</span>, <span class='st'>"B"</span>, <span class='st'>"C"</span><span class='op'>)</span>, <span class='st'>"D"</span>, <span class='st'>"E"</span>, <span class='st'>"F"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] "A, B, C, D, E, F"</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

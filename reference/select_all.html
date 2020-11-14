@@ -73,7 +73,7 @@ parameter." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">dabr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
       </span>
     </div>
 
@@ -93,7 +93,12 @@ parameter." />
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/special-uor/dabr/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -108,7 +113,7 @@ parameter." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Select all the records</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/special-uor/dabr/blob/master/R/dabr.R'><code>R/dabr.R</code></a></small>
     <div class="hidden name"><code>select_all.Rd</code></div>
     </div>
 
@@ -158,9 +163,9 @@ parameter.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
-<span class='va'>conn</span> <span class='op'>&lt;-</span> <span class='fu'><a href='open_conn_mysql.html'>open_conn_mysql</a></span><span class='op'>(</span><span class='st'>"sys"</span>, <span class='st'>"root"</span><span class='op'>)</span>
-<span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>select_all</span><span class='op'>(</span><span class='va'>conn</span>, <span class='st'>"sys_config"</span><span class='op'>)</span>
-<span class='fu'><a href='close_conn.html'>close_conn</a></span><span class='op'>(</span><span class='va'>conn</span><span class='op'>)</span>
+<span class='va'>conn</span> <span class='op'>&lt;-</span> <span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'><a href='open_conn_mysql.html'>open_conn_mysql</a></span><span class='op'>(</span><span class='st'>"sys"</span>, <span class='st'>"root"</span><span class='op'>)</span>
+<span class='va'>out</span> <span class='op'>&lt;-</span> <span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'>select_all</span><span class='op'>(</span><span class='va'>conn</span>, <span class='st'>"sys_config"</span><span class='op'>)</span>
+<span class='fu'>dabr</span><span class='fu'>::</span><span class='fu'><a href='close_conn.html'>close_conn</a></span><span class='op'>(</span><span class='va'>conn</span><span class='op'>)</span>
 <span class='op'>}</span>
 </div></pre>
   </div>
