@@ -8,7 +8,7 @@ open_conn_mysql(
   dbname,
   user = "root",
   password = NULL,
-  host = "localhost",
+  host = "127.0.0.1",
   port = 3306
 )
 }

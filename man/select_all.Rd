@@ -27,9 +27,9 @@ parameter.
 }
 \examples{
 \dontrun{
-conn <- open_conn_mysql("sys", "root")
-out <- select_all(conn, "sys_config")
-close_conn(conn)
+conn <- dabr::open_conn_mysql("sys", "root")
+out <- dabr::select_all(conn, "sys_config")
+dabr::close_conn(conn)
 }
 }
 \seealso{

@@ -7,14 +7,12 @@
 \usage{
 update(conn, ...)
 
-\method{update}{MariaDBConnection}(conn, query, quiet = FALSE, ...)
+\method{update}{MariaDBConnection}(conn, ..., quiet = FALSE)
 }
 \arguments{
-\item{conn}{\code{MariaDBConnection} connection object.}
+\item{conn}{DB connection object.}
 
-\item{...}{Optional parameters.}
-
-\item{query}{\code{UPDATE} query.}
+\item{...}{\code{UPDATE} query and optional parameters.}
 
 \item{quiet}{Boolean flag to hide status messages.}
 }

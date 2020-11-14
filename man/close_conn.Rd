@@ -13,7 +13,7 @@ close_conn(conn, ...)
 \method{close_conn}{default}(conn, ...)
 }
 \arguments{
-\item{conn}{Connection object.}
+\item{conn}{DB connection object.}
 
 \item{...}{Optional parameters.}
 }

@@ -1,3 +1,6 @@
+#' @keywords internal
+"_PACKAGE"
+
 #' Connect to database
 #'
 #' Uses \code{RMariaDB} to open a connection to a MySQL database.
@@ -20,9 +23,9 @@
 open_conn_mysql <- function(dbname,
                             user = "root",
                             password = NULL,
-                            host = "localhost",
+                            host = "127.0.0.1",
                             port = 3306) {
-  conn <- RMariaDB::dbConnect(RMariaDB::MariaDB(),
+  conn <- RMariaDB::dbConnect(drv = RMariaDB::MariaDB(),
                               user = user,
                               password = password,
                               dbname = dbname,
@@ -33,7 +36,7 @@ open_conn_mysql <- function(dbname,
 
 #' Close connection to database
 #'
-#' @param conn Connection object.
+#' @param conn DB connection object.
 #' @param ... Optional parameters.
 #'
 #' @rdname close_conn
@@ -64,8 +67,8 @@ close_conn.default <- function(conn, ...) {
 
 #' Execute \code{SELECT} query
 #'
-#' @param conn \code{MariaDBConnection} connection object.
-#' @param ... Optional parameters.
+#' @param conn DB connection object.
+#' @param ... \code{SELECT} query and optional parameters.
 #'
 #' @return Data frame containing the selected records.
 #' @rdname select
@@ -76,7 +79,6 @@ select <- function(conn, ...) {
   UseMethod("select", conn)
 }
 
-#' @param query \code{SELECT} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname select
@@ -88,10 +90,16 @@ select <- function(conn, ...) {
 #' out <- select(conn, "SELECT variable, value FROM sys_config")
 #' close_conn(conn)
 #' }
-select.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  # rlang::dots_list()
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a SELECT token
   if (!("SELECT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid SELECT query!")
+
+  # Change NAs to NULL
+  # query <- gsub("NA", "NULL", query)
+
   # Show query
   if (!quiet)
     message(paste0("Executing: \n", query))
@@ -140,13 +148,13 @@ select_all <- function(conn, ...) {
 #'
 #' @examples
 #' \dontrun{
-#' conn <- open_conn_mysql("sys", "root")
-#' out <- select_all(conn, "sys_config")
-#' close_conn(conn)
+#' conn <- dabr::open_conn_mysql("sys", "root")
+#' out <- dabr::select_all(conn, "sys_config")
+#' dabr::close_conn(conn)
 #' }
 select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   query <- paste0("SELECT * FROM ", table)
-  return(dabr::select(conn, query, quiet))
+  return(dabr::select(conn, query, quiet = quiet))
 }
 
 #' Check connection object
@@ -167,8 +175,8 @@ is.MariaDBConnection <- function(conn) {
 
 #' Execute \code{UPDATE} query
 #'
-#' @param conn \code{MariaDBConnection} connection object.
-#' @param ... Optional parameters.
+#' @param conn DB connection object.
+#' @param ... \code{UPDATE} query and optional parameters.
 #'
 #' @rdname update
 #' @export
@@ -178,7 +186,6 @@ update <- function(conn, ...) {
   UseMethod("update", conn)
 }
 
-#' @param query \code{UPDATE} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname update
@@ -190,7 +197,8 @@ update <- function(conn, ...) {
 #' out <- update(conn, "UPDATE sys_config SET value = 1")
 #' close_conn(conn)
 #' }
-update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+update.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a UPDATE token
   if (!("UPDATE" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid UPDATE query!")
@@ -216,7 +224,7 @@ update.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
 #' Execute \code{INSERT} query
 #'
 #' @param conn DB connection object.
-#' @param ... Optional parameters.
+#' @param ... \code{INSERT} query and optional parameters.
 #'
 #' @rdname insert
 #' @export
@@ -226,7 +234,6 @@ insert <- function(conn, ...) {
   UseMethod("insert", conn)
 }
 
-#' @param query \code{INSERT} query.
 #' @param quiet Boolean flag to hide status messages.
 #'
 #' @rdname insert
@@ -242,7 +249,8 @@ insert <- function(conn, ...) {
 #' out <- insert(conn, query)
 #' close_conn(conn)
 #' }
-insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
+insert.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
   # Verify that the query has a INSERT token
   if (!("INSERT" %in% unlist(strsplit(toupper(query), " "))))
     stop("Your query does not look like a valid INSERT query!")
@@ -260,7 +268,7 @@ insert.MariaDBConnection <- function(conn, query, quiet = FALSE, ...) {
         message("\nResults: No records were inserted.")
       } else {
         message("\nResults: ", rows, " record",
-                ifelse(rows, "s were ", " was "),
+                ifelse(rows > 1, "s were ", " was "),
                 "inserted.")
       }
 
@@ -285,20 +293,78 @@ list_tables <- function(conn, ...) {
 }
 
 #' @param quiet Boolean flag to hide status messages.
+#' @param attr Boolean flag to list the attributes of each table.
+#'
+#' @return If \code{quiet = TRUE} returns a list with the tables' names. If
+#'     \code{attr = TRUE} includes each attribute of the tables.
 #'
 #' @rdname list_tables
 #' @export
-list_tables.MariaDBConnection <- function(conn, quiet = FALSE, ...) {
+list_tables.MariaDBConnection <- function(conn, quiet = FALSE, attr = TRUE, ...) {
   tryCatch({
     table_names <- RMariaDB::dbListTables(conn)
-    tables_info <- lapply(table_names, RMariaDB::dbListFields, conn = conn)
+    if (!attr)
+      return(table_names)
+    tables_info <- lapply(table_names, get_attr, conn = conn)
     names(tables_info) <- table_names
-    for (i in seq_len(length(tables_info))) {
-      print(
-        knitr::kable(tables_info[[i]], col.names = table_names[i])
-      )
+    if (!quiet) {
+      for (i in seq_along(tables_info))
+        print(knitr::kable(tables_info[[i]], col.names = table_names[i]))
+    } else {
+      out <- vector("list", length(table_names))
+      for (i in seq_along(tables_info))
+        out[[i]] <- tables_info[[i]]
+      names(out) <- table_names
+      return(out)
     }
   }, error = function(e) {
     stop(conditionMessage(e))
   })
+}
+
+#' Get attributes of a table
+#'
+#' @inheritParams close_conn
+#'
+#' @export
+#'
+#' @rdname get_attr
+get_attr <- function(conn, ...) {
+  UseMethod("get_attr", conn)
+}
+
+#' @param name Table name.
+#'
+#' @return List of attributes for table \code{name}.
+#' @export
+#'
+#' @rdname get_attr
+get_attr.MariaDBConnection <- function(conn, name, ...) {
+  tryCatch({
+    return(RMariaDB::dbListFields(conn = conn, name = name))
+  }, error = function(e) {
+    stop(conditionMessage(e))
+  })
+}
+
+#' Verify connection
+#'
+#' Verify if connection object is still valid, is connected to the database
+#' server.
+#'
+#' @inheritParams close_conn
+#'
+#' @return Connection status.
+#' @export
+#'
+#' @rdname is.connected
+is.connected <- function(conn,  ...) {
+  UseMethod("is.connected", conn)
+}
+
+#' @export
+#'
+#' @rdname is.connected
+is.connected.MariaDBConnection <- function(conn, ...) {
+  RMariaDB::dbIsValid(conn)
 }

@@ -7,7 +7,7 @@
 \usage{
 list_tables(conn, ...)
 
-\method{list_tables}{MariaDBConnection}(conn, quiet = FALSE, ...)
+\method{list_tables}{MariaDBConnection}(conn, quiet = FALSE, attr = TRUE, ...)
 }
 \arguments{
 \item{conn}{DB connection object.}
@@ -15,6 +15,12 @@ list_tables(conn, ...)
 \item{...}{Optional parameters.}
 
 \item{quiet}{Boolean flag to hide status messages.}
+
+\item{attr}{Boolean flag to list the attributes of each table.}
+}
+\value{
+If \code{quiet = TRUE} returns a list with the tables' names. If
+\code{attr = TRUE} includes each attribute of the tables.
 }
 \description{
 List tables
