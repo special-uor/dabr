@@ -157,22 +157,6 @@ select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   return(dabr::select(conn, query, quiet = quiet))
 }
 
-#' Check connection object
-#'
-#' Check if \code{conn} is an object with class \code{MariaDBConnection}.
-#'
-#' @param conn \code{MariaDBConnection} connection object.
-#'
-#' @return \code{TRUE} if \code{conn} a \code{MariaDBConnection} connection
-#'     object, \code{FALSE} otherwise.
-#'
-#' @family DB functions
-#' @noRd
-#' @keywords internal
-is.MariaDBConnection <- function(conn) {
-  inherits(conn, "MariaDBConnection")
-}
-
 #' Execute \code{UPDATE} query
 #'
 #' @param conn DB connection object.
