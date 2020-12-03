@@ -32,6 +32,54 @@ close_conn.default <- function(conn, ...) {
   stop("Invalid connection object")
 }
 
+#' Execute \code{DELETE} query
+#'
+#' @param conn DB connection object.
+#' @param ... \code{DELETE} query and optional parameters.
+#'
+#' @rdname delete
+#' @export
+#'
+#' @family DB functions
+delete <- function(conn, ...) {
+  UseMethod("delete", conn)
+}
+
+#' @param quiet Boolean flag to hide status messages.
+#'
+#' @rdname delete
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' conn <- open_conn_mysql("sys", "root")
+#' out <- delete(conn, "DELETE sys_config SET value = 1")
+#' close_conn(conn)
+#' }
+delete.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
+  query <- paste(unlist(lapply(c(...), trimws)), collapse = " ")
+  # Verify that the query has a DELETE token
+  if (!("DELETE" %in% unlist(strsplit(toupper(query), " "))))
+    stop("Your query does not look like a valid DELETE query!")
+  # Show query
+  if (!quiet)
+    message(paste0("Executing: \n", query))
+
+  tryCatch({
+    res <- RMariaDB::dbExecute(conn, query)
+    if (!quiet)
+      if (res == 0) {
+        message("\nResults: No records were deleted.")
+      } else {
+        message("\nResults: ", res, " record",
+                ifelse(res > 1, "s were ", " was "),
+                "deleted.")
+      }
+  }, error = function(e) {
+    stop(conditionMessage(e))
+  })
+}
+
 #' Get attributes of a table
 #'
 #' @inheritParams close_conn
