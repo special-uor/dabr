@@ -18,7 +18,7 @@ files, and import CSV files as tables.
 ## Installation
 
 You can install the released version of dabr from
-[CRAN](https://CRAN.R-project.org) with:
+[CRAN](https://cran.r-project.org/package=dabr) with:
 
 ``` r
 install.packages("dabr")
@@ -38,7 +38,8 @@ Connecting to the Reading Palaeofire Database (RPD), locally installed
 under the name `RPD-latest`:
 
 ``` r
-conn <- dabr::open_conn_mysql("RPD-latest")
+conn <- dabr::open_conn_mysql("RPD-latest", 
+                              password = rstudioapi::askForPassword(prompt = "Password"))
 ```
 
 Explore the database structure by listing the tables and their
