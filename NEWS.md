@@ -3,7 +3,8 @@
 * Added option to return tables' attributes with `dabr::list_table(quiet = TRUE)`. 
 * Added function to get the attributes of a table, `dabr::get_attr`.
 * Updated queries for `dabr::insert`, `dabr::select`, and `dabr::update`.
-* Added function to verify connection objects, `dabr::is.connected`
+* Added function to verify connection objects, `dabr::is.connected`.
+* Removed unused function `is.MariaDBConnection`.
 
 # dabr 0.0.1
 
