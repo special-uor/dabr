@@ -33,6 +33,7 @@ close_conn(conn)
 \seealso{
 Other DB functions: 
 \code{\link{close_conn}()},
+\code{\link{delete}()},
 \code{\link{list_tables}()},
 \code{\link{open_conn_mysql}()},
 \code{\link{select_all}()},
