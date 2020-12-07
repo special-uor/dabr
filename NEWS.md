@@ -5,6 +5,7 @@
 * Updated queries for `dabr::insert`, `dabr::select`, and `dabr::update`.
 * Added function to verify connection objects, `dabr::is.connected`.
 * Removed unused function `is.MariaDBConnection`.
+* Added function to execute delete queries, `dabr::delete`.
 
 # dabr 0.0.1
 
