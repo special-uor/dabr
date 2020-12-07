@@ -7,4 +7,6 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is a resubmission. I have made the following changes:
+
+- Added trailing slashes to URLs in the DESCRIPTION file.

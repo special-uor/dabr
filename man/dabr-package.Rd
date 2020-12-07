@@ -13,10 +13,10 @@ Provides functions to manage databases: select, update, insert,
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/special-uor/dabr}
-  \item \url{https://special-uor.github.io/dabr}
-  \item \url{https://research.reading.ac.uk/palaeoclimate}
-  \item Report bugs at \url{https://github.com/special-uor/dabr/issues}
+  \item \url{https://github.com/special-uor/dabr/}
+  \item \url{https://special-uor.github.io/dabr/}
+  \item \url{https://research.reading.ac.uk/palaeoclimate/}
+  \item Report bugs at \url{https://github.com/special-uor/dabr/issues/}
 }
 
 }
