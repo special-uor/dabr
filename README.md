@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![](https://www.r-pkg.org/badges/version/dabr?color=black)](https://cran.r-project.org/package=dabr)
-[![](https://img.shields.io/badge/devel%20version-0.0.2-yellow.svg)](https://github.com/special-uor/dabr)
+[![](https://img.shields.io/badge/devel%20version-0.0.2.9000-yellow.svg)](https://github.com/special-uor/dabr)
 [![R build
 status](https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg)](https://github.com/special-uor/dabr/actions)
 <!-- badges: end -->
@@ -49,6 +49,18 @@ attributes:
 dabr::list_tables(conn)
 #> 
 #> 
+#> |age_model |
+#> |:---------|
+#> |ID_MODEL  |
+#> |ID_SAMPLE |
+#> |mean      |
+#> |median    |
+#> |UNCERT_5  |
+#> |UNCERT_25 |
+#> |UNCERT_75 |
+#> |UNCERT_95 |
+#> 
+#> 
 #> |charcoal    |
 #> |:-----------|
 #> |ID_SAMPLE   |
@@ -56,7 +68,14 @@ dabr::list_tables(conn)
 #> |sample_size |
 #> 
 #> 
-#> |chronology         |
+#> |chronology       |
+#> |:----------------|
+#> |ID_MODEL         |
+#> |ID_SAMPLE        |
+#> |original_est_age |
+#> 
+#> 
+#> |chronology_old     |
 #> |:------------------|
 #> |ID_SAMPLE          |
 #> |original_age_model |
@@ -109,6 +128,12 @@ dabr::list_tables(conn)
 #> |ID_PUB          |
 #> 
 #> 
+#> |model_name |
+#> |:----------|
+#> |ID_MODEL   |
+#> |model_name |
+#> 
+#> 
 #> |pub         |
 #> |:-----------|
 #> |ID_PUB      |
@@ -128,8 +153,6 @@ dabr::list_tables(conn)
 #> |site             |
 #> |:----------------|
 #> |ID_SITE          |
-#> |ID_SITE_GCDv4_WP |
-#> |ID_SITE_GCDv3    |
 #> |site_name        |
 #> |latitude         |
 #> |longitude        |
