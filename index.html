@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dabr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
       </span>
     </div>
 
@@ -41,7 +41,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -55,7 +55,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/special-uor/dabr/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -101,6 +101,18 @@
 <code class="sourceCode R"><span class="fu">dabr</span><span class="fu">::</span><span class="fu"><a href="reference/list_tables.html">list_tables</a></span><span class="op">(</span><span class="va">conn</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; |age_model |</span>
+<span class="co">#&gt; |:---------|</span>
+<span class="co">#&gt; |ID_MODEL  |</span>
+<span class="co">#&gt; |ID_SAMPLE |</span>
+<span class="co">#&gt; |mean      |</span>
+<span class="co">#&gt; |median    |</span>
+<span class="co">#&gt; |UNCERT_5  |</span>
+<span class="co">#&gt; |UNCERT_25 |</span>
+<span class="co">#&gt; |UNCERT_75 |</span>
+<span class="co">#&gt; |UNCERT_95 |</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; |charcoal    |</span>
 <span class="co">#&gt; |:-----------|</span>
 <span class="co">#&gt; |ID_SAMPLE   |</span>
@@ -108,7 +120,14 @@
 <span class="co">#&gt; |sample_size |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; |chronology         |</span>
+<span class="co">#&gt; |chronology       |</span>
+<span class="co">#&gt; |:----------------|</span>
+<span class="co">#&gt; |ID_MODEL         |</span>
+<span class="co">#&gt; |ID_SAMPLE        |</span>
+<span class="co">#&gt; |original_est_age |</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; |chronology_old     |</span>
 <span class="co">#&gt; |:------------------|</span>
 <span class="co">#&gt; |ID_SAMPLE          |</span>
 <span class="co">#&gt; |original_age_model |</span>
@@ -161,6 +180,12 @@
 <span class="co">#&gt; |ID_PUB          |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
+<span class="co">#&gt; |model_name |</span>
+<span class="co">#&gt; |:----------|</span>
+<span class="co">#&gt; |ID_MODEL   |</span>
+<span class="co">#&gt; |model_name |</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
 <span class="co">#&gt; |pub         |</span>
 <span class="co">#&gt; |:-----------|</span>
 <span class="co">#&gt; |ID_PUB      |</span>
@@ -180,8 +205,6 @@
 <span class="co">#&gt; |site             |</span>
 <span class="co">#&gt; |:----------------|</span>
 <span class="co">#&gt; |ID_SITE          |</span>
-<span class="co">#&gt; |ID_SITE_GCDv4_WP |</span>
-<span class="co">#&gt; |ID_SITE_GCDv3    |</span>
 <span class="co">#&gt; |site_name        |</span>
 <span class="co">#&gt; |latitude         |</span>
 <span class="co">#&gt; |longitude        |</span>
@@ -237,7 +260,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=dabr"><img src="https://www.r-pkg.org/badges/version/dabr?color=black"></a></li>
-<li><a href="https://github.com/special-uor/dabr"><img src="https://img.shields.io/badge/devel%20version-0.0.2-yellow.svg"></a></li>
+<li><a href="https://github.com/special-uor/dabr"><img src="https://img.shields.io/badge/devel%20version-0.0.2.9000-yellow.svg"></a></li>
 <li><a href="https://github.com/special-uor/dabr/actions"><img src="https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
