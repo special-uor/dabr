@@ -303,7 +303,8 @@ select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
   # Send query
   rs <- RMariaDB::dbSendQuery(conn, query)
   # Fetch records
-  records <- RMariaDB::dbFetch(rs)
+  records <- RMariaDB::dbFetch(rs) %>%
+    tibble::as_tibble()
   # Show query results
   if (!quiet)
     if (nrow(records) == 0) {
