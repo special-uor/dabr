@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">dabr</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.3</span>
       </span>
     </div>
 
@@ -113,30 +113,11 @@
 <span class="co">#&gt; |UNCERT_95 |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; |charcoal    |</span>
-<span class="co">#&gt; |:-----------|</span>
-<span class="co">#&gt; |ID_SAMPLE   |</span>
-<span class="co">#&gt; |quantity    |</span>
-<span class="co">#&gt; |sample_size |</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
 <span class="co">#&gt; |chronology       |</span>
 <span class="co">#&gt; |:----------------|</span>
 <span class="co">#&gt; |ID_MODEL         |</span>
 <span class="co">#&gt; |ID_SAMPLE        |</span>
 <span class="co">#&gt; |original_est_age |</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; |chronology_old     |</span>
-<span class="co">#&gt; |:------------------|</span>
-<span class="co">#&gt; |ID_SAMPLE          |</span>
-<span class="co">#&gt; |original_age_model |</span>
-<span class="co">#&gt; |original_est_age   |</span>
-<span class="co">#&gt; |BACON_INTCAL13_age |</span>
-<span class="co">#&gt; |UNCERT_5           |</span>
-<span class="co">#&gt; |UNCERT_25          |</span>
-<span class="co">#&gt; |UNCERT_75          |</span>
-<span class="co">#&gt; |UNCERT_95          |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; |date_info        |</span>
@@ -152,8 +133,28 @@
 <span class="co">#&gt; |age_calib        |</span>
 <span class="co">#&gt; |error            |</span>
 <span class="co">#&gt; |correlation_info |</span>
-<span class="co">#&gt; |explanation      |</span>
 <span class="co">#&gt; |age_used         |</span>
+<span class="co">#&gt; |reason_age_used  |</span>
+<span class="co">#&gt; |notes            |</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; |DELETE_charcoal |</span>
+<span class="co">#&gt; |:---------------|</span>
+<span class="co">#&gt; |ID_SAMPLE       |</span>
+<span class="co">#&gt; |quantity        |</span>
+<span class="co">#&gt; |sample_size     |</span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; </span>
+<span class="co">#&gt; |DELETE_chronology  |</span>
+<span class="co">#&gt; |:------------------|</span>
+<span class="co">#&gt; |ID_SAMPLE          |</span>
+<span class="co">#&gt; |original_age_model |</span>
+<span class="co">#&gt; |original_est_age   |</span>
+<span class="co">#&gt; |BACON_INTCAL13_age |</span>
+<span class="co">#&gt; |UNCERT_5           |</span>
+<span class="co">#&gt; |UNCERT_25          |</span>
+<span class="co">#&gt; |UNCERT_75          |</span>
+<span class="co">#&gt; |UNCERT_95          |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; |entity               |</span>
@@ -171,7 +172,6 @@
 <span class="co">#&gt; |core_location        |</span>
 <span class="co">#&gt; |last_updated         |</span>
 <span class="co">#&gt; |ID_UNIT              |</span>
-<span class="co">#&gt; |chron_source         |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; |entity_link_pub |</span>
@@ -193,13 +193,16 @@
 <span class="co">#&gt; |pub_DOI_URL |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; |sample       |</span>
-<span class="co">#&gt; |:------------|</span>
-<span class="co">#&gt; |ID_ENTITY    |</span>
-<span class="co">#&gt; |ID_SAMPLE    |</span>
-<span class="co">#&gt; |sample_depth |</span>
-<span class="co">#&gt; |depth_top    |</span>
-<span class="co">#&gt; |depth_bottom |</span>
+<span class="co">#&gt; |sample                   |</span>
+<span class="co">#&gt; |:------------------------|</span>
+<span class="co">#&gt; |ID_ENTITY                |</span>
+<span class="co">#&gt; |ID_SAMPLE                |</span>
+<span class="co">#&gt; |avg_depth                |</span>
+<span class="co">#&gt; |depth_top                |</span>
+<span class="co">#&gt; |depth_bottom             |</span>
+<span class="co">#&gt; |sample_thickness         |</span>
+<span class="co">#&gt; |charcoal_measurement     |</span>
+<span class="co">#&gt; |analytical_sample_volume |</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; |site             |</span>
@@ -260,7 +263,7 @@
 <h2>Dev status</h2>
 <ul class="list-unstyled">
 <li><a href="https://cran.r-project.org/package=dabr"><img src="https://www.r-pkg.org/badges/version/dabr?color=black"></a></li>
-<li><a href="https://github.com/special-uor/dabr"><img src="https://img.shields.io/badge/devel%20version-0.0.2.9000-yellow.svg"></a></li>
+<li><a href="https://github.com/special-uor/dabr"><img src="https://img.shields.io/badge/devel%20version-0.0.3-yellow.svg"></a></li>
 <li><a href="https://github.com/special-uor/dabr/actions"><img src="https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg" alt="R build status"></a></li>
 </ul>
 </div>
