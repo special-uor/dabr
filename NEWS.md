@@ -1,4 +1,7 @@
-# dabr (development version)
+# dabr 0.0.3
+
+* Updated the return type for select queries to a tibble.
+* Added the pipe operator from the `magrittr` package.
 
 # dabr 0.0.2
 

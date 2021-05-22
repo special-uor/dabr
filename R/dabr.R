@@ -303,7 +303,8 @@ select.MariaDBConnection <- function(conn, ..., quiet = FALSE) {
   # Send query
   rs <- RMariaDB::dbSendQuery(conn, query)
   # Fetch records
-  records <- RMariaDB::dbFetch(rs)
+  records <- RMariaDB::dbFetch(rs) %>%
+    tibble::as_tibble()
   # Show query results
   if (!quiet)
     if (nrow(records) == 0) {
@@ -350,7 +351,7 @@ select_all <- function(conn, ...) {
 #' }
 select_all.MariaDBConnection <- function(conn, table, quiet = FALSE, ...) {
   query <- paste0("SELECT * FROM ", table)
-  return(dabr::select(conn, query, quiet = quiet))
+  return(conn %>% dabr::select(query, quiet = quiet))
 }
 
 #' Execute \code{UPDATE} query
