@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![](https://www.r-pkg.org/badges/version/dabr?color=black)](https://cran.r-project.org/package=dabr)
-[![](https://img.shields.io/badge/devel%20version-0.0.2.9000-yellow.svg)](https://github.com/special-uor/dabr)
+[![](https://img.shields.io/badge/devel%20version-0.0.3-yellow.svg)](https://github.com/special-uor/dabr)
 [![R build
 status](https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg)](https://github.com/special-uor/dabr/actions)
 <!-- badges: end -->
@@ -61,30 +61,11 @@ dabr::list_tables(conn)
 #> |UNCERT_95 |
 #> 
 #> 
-#> |charcoal    |
-#> |:-----------|
-#> |ID_SAMPLE   |
-#> |quantity    |
-#> |sample_size |
-#> 
-#> 
 #> |chronology       |
 #> |:----------------|
 #> |ID_MODEL         |
 #> |ID_SAMPLE        |
 #> |original_est_age |
-#> 
-#> 
-#> |chronology_old     |
-#> |:------------------|
-#> |ID_SAMPLE          |
-#> |original_age_model |
-#> |original_est_age   |
-#> |BACON_INTCAL13_age |
-#> |UNCERT_5           |
-#> |UNCERT_25          |
-#> |UNCERT_75          |
-#> |UNCERT_95          |
 #> 
 #> 
 #> |date_info        |
@@ -100,8 +81,28 @@ dabr::list_tables(conn)
 #> |age_calib        |
 #> |error            |
 #> |correlation_info |
-#> |explanation      |
 #> |age_used         |
+#> |reason_age_used  |
+#> |notes            |
+#> 
+#> 
+#> |DELETE_charcoal |
+#> |:---------------|
+#> |ID_SAMPLE       |
+#> |quantity        |
+#> |sample_size     |
+#> 
+#> 
+#> |DELETE_chronology  |
+#> |:------------------|
+#> |ID_SAMPLE          |
+#> |original_age_model |
+#> |original_est_age   |
+#> |BACON_INTCAL13_age |
+#> |UNCERT_5           |
+#> |UNCERT_25          |
+#> |UNCERT_75          |
+#> |UNCERT_95          |
 #> 
 #> 
 #> |entity               |
@@ -119,7 +120,6 @@ dabr::list_tables(conn)
 #> |core_location        |
 #> |last_updated         |
 #> |ID_UNIT              |
-#> |chron_source         |
 #> 
 #> 
 #> |entity_link_pub |
@@ -141,13 +141,16 @@ dabr::list_tables(conn)
 #> |pub_DOI_URL |
 #> 
 #> 
-#> |sample       |
-#> |:------------|
-#> |ID_ENTITY    |
-#> |ID_SAMPLE    |
-#> |sample_depth |
-#> |depth_top    |
-#> |depth_bottom |
+#> |sample                   |
+#> |:------------------------|
+#> |ID_ENTITY                |
+#> |ID_SAMPLE                |
+#> |avg_depth                |
+#> |depth_top                |
+#> |depth_bottom             |
+#> |sample_thickness         |
+#> |charcoal_measurement     |
+#> |analytical_sample_volume |
 #> 
 #> 
 #> |site             |
