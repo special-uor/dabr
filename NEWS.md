@@ -1,4 +1,4 @@
-# dabr (development version)
+# dabr 0.0.3
 
 # dabr 0.0.2
 
