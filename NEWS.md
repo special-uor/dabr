@@ -1,5 +1,7 @@
 # dabr 0.0.3
 
+* Updated the return type for select queries to a tibble.
+
 # dabr 0.0.2
 
 * Added option to return tables' attributes with `dabr::list_table(quiet = TRUE)`. 
