@@ -22,5 +22,6 @@ BugReports: https://github.com/special-uor/dabr/issues/
 Language: en-GB
 Imports: 
     knitr,
+    magrittr,
     RMariaDB,
     tibble
