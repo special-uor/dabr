@@ -6,9 +6,7 @@
 \alias{dabr-package}
 \title{dabr: Database Management with R}
 \description{
-Provides functions to manage databases: select, update, insert,
-    and delete records, list tables, backup tables as CSV files, and import
-    CSV files as tables.
+Provides functions to manage databases: select, update, insert, and delete records, list tables, backup tables as CSV files, and import CSV files as tables.
 }
 \seealso{
 Useful links:
@@ -21,7 +19,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Roberto Villegas-Diaz \email{r.villegas-diaz@reading.ac.uk} (\href{https://orcid.org/0000-0001-5036-8661}{ORCID})
+\strong{Maintainer}: Roberto Villegas-Diaz \email{r.villegas-diaz@outlook.com} (\href{https://orcid.org/0000-0001-5036-8661}{ORCID})
 
 Other contributors:
 \itemize{

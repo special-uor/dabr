@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![](https://www.r-pkg.org/badges/version/dabr?color=black)](https://cran.r-project.org/package=dabr)
-[![](https://img.shields.io/badge/devel%20version-0.0.3-yellow.svg)](https://github.com/special-uor/dabr)
+[![](https://img.shields.io/badge/devel%20version-0.0.4-yellow.svg)](https://github.com/special-uor/dabr)
 [![R build
 status](https://github.com/special-uor/dabr/workflows/R-CMD-check/badge.svg)](https://github.com/special-uor/dabr/actions)
 <!-- badges: end -->
@@ -68,41 +68,22 @@ dabr::list_tables(conn)
 #> |original_est_age |
 #> 
 #> 
-#> |date_info        |
-#> |:----------------|
-#> |ID_ENTITY        |
-#> |ID_DATE_INFO     |
-#> |material_dated   |
-#> |date_type        |
-#> |avg_depth        |
-#> |thickness        |
-#> |lab_number       |
-#> |age_C14          |
-#> |age_calib        |
-#> |error            |
-#> |correlation_info |
-#> |age_used         |
-#> |reason_age_used  |
-#> |notes            |
-#> 
-#> 
-#> |DELETE_charcoal |
-#> |:---------------|
-#> |ID_SAMPLE       |
-#> |quantity        |
-#> |sample_size     |
-#> 
-#> 
-#> |DELETE_chronology  |
-#> |:------------------|
-#> |ID_SAMPLE          |
-#> |original_age_model |
-#> |original_est_age   |
-#> |BACON_INTCAL13_age |
-#> |UNCERT_5           |
-#> |UNCERT_25          |
-#> |UNCERT_75          |
-#> |UNCERT_95          |
+#> |date_info           |
+#> |:-------------------|
+#> |ID_ENTITY           |
+#> |ID_DATE_INFO        |
+#> |material_dated      |
+#> |date_type           |
+#> |avg_depth           |
+#> |thickness           |
+#> |lab_number          |
+#> |age_C14             |
+#> |age_calib           |
+#> |error               |
+#> |correlation_info    |
+#> |age_used            |
+#> |reason_age_not_used |
+#> |notes               |
 #> 
 #> 
 #> |entity               |
@@ -122,10 +103,10 @@ dabr::list_tables(conn)
 #> |ID_UNIT              |
 #> 
 #> 
-#> |entity_link_pub |
-#> |:---------------|
-#> |ID_ENTITY       |
-#> |ID_PUB          |
+#> |entity_link_publication |
+#> |:-----------------------|
+#> |ID_ENTITY               |
+#> |ID_PUB                  |
 #> 
 #> 
 #> |model_name |
@@ -134,23 +115,23 @@ dabr::list_tables(conn)
 #> |model_name |
 #> 
 #> 
-#> |pub         |
+#> |publication |
 #> |:-----------|
 #> |ID_PUB      |
 #> |citation    |
 #> |pub_DOI_URL |
+#> |bibentry    |
 #> 
 #> 
-#> |sample                   |
-#> |:------------------------|
-#> |ID_ENTITY                |
-#> |ID_SAMPLE                |
-#> |avg_depth                |
-#> |depth_top                |
-#> |depth_bottom             |
-#> |sample_thickness         |
-#> |charcoal_measurement     |
-#> |analytical_sample_volume |
+#> |sample                      |
+#> |:---------------------------|
+#> |ID_ENTITY                   |
+#> |ID_SAMPLE                   |
+#> |avg_depth                   |
+#> |sample_thickness            |
+#> |charcoal_measurement        |
+#> |analytical_sample_size      |
+#> |analytical_sample_size_unit |
 #> 
 #> 
 #> |site             |
@@ -175,7 +156,7 @@ dabr::list_tables(conn)
 #> |UNIT    |
 ```
 
-**ALWAYS\!** close your connection to the database (when you are done):
+**ALWAYS!** close your connection to the database (when you are done):
 
 ``` r
 dabr::close_conn(conn)
